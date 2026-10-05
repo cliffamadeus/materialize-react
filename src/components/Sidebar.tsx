@@ -11,14 +11,17 @@ import Tooltip from "@mui/material/Tooltip";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
+import { LogoutOutlined } from "@mui/icons-material";
 
 const drawerWidth = 240;
 const collapsedWidth = 64;
 
+// src/components/Sidebar.tsx (snippet)
 const items = [
-    { label: "Home",    path: "/",        icon: <HomeIcon /> },
-    { label: "About",   path: "/about",   icon: <InfoIcon /> },
-    { label: "Contact", path: "/contact", icon: <ContactMailIcon /> },
+    { label: "Home",    path: "/app",         icon: <HomeIcon /> },
+    { label: "About",   path: "/app/about",   icon: <InfoIcon /> },
+    { label: "Contact", path: "/app/contact", icon: <ContactMailIcon /> },
+    { label: "Logout", path: "/", icon: <LogoutOutlined/> },
 ];
 
 interface SidebarProps {
