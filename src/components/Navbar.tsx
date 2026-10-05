@@ -17,74 +17,74 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 interface NavbarProps {
-  sidebarOpen: boolean;
-  onMenuClick: () => void;
+    sidebarOpen: boolean;
+    onMenuClick: () => void;
 }
 
 export default function Navbar({ onMenuClick }: NavbarProps) {
-  const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
+    const navigate = useNavigate();
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const open = Boolean(anchorEl);
 
-  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  };
+};
 
-  const handleClose = () => {
+const handleClose = () => {
     setAnchorEl(null);
-  };
+};
 
-  const handleProfile = () => {
+const handleProfile = () => {
     handleClose();
     navigate("/profile");
-  };
+};
 
-  const handleLogout = () => {
+const handleLogout = () => {
     handleClose();
     // Replace with real logout logic later (clear auth, redirect, etc.)
     alert("Logging out...");
-  };
+};
 
-  return (
+return (
     <AppBar
-      position="fixed"
-      elevation={1}
-      sx={{
-        bgcolor: "#fff",
-        color: "#000",
-        zIndex: (theme) => theme.zIndex.drawer + 1,
-      }}
+        position="fixed"
+        elevation={1}
+        sx={{
+            bgcolor: "#fff",
+            color: "#000",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+    }}
     >
-      <Toolbar>
+    <Toolbar>
         <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="toggle sidebar"
-          onClick={onMenuClick}
-          sx={{ mr: 2 }}
+            edge="start"
+            color="inherit"
+            aria-label="toggle sidebar"
+            onClick={onMenuClick}
+            sx={{ mr: 2 }}
         >
-          <MenuIcon />
+            <MenuIcon />
         </IconButton>
 
         <Typography variant="h6" sx={{ flexGrow: 1, fontWeight: 500 }}>
-          My Application
+            My Application
         </Typography>
 
         <Box>
-          <IconButton
+        <IconButton
             onClick={handleOpen}
             size="small"
             aria-controls={open ? "profile-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
             sx={{ p: 0 }}
-          >
+        >
             <Avatar sx={{ bgcolor: "#1976d2", width: 36, height: 36 }}>
-              <PersonIcon fontSize="small" />
+                <PersonIcon fontSize="small" />
             </Avatar>
-          </IconButton>
+        </IconButton>
 
-          <Menu
+        <Menu
             id="profile-menu"
             anchorEl={anchorEl}
             open={open}
@@ -92,36 +92,36 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             transformOrigin={{ vertical: "top", horizontal: "right" }}
             slotProps={{
-              paper: {
-                sx: { mt: 1, minWidth: 180 },
-              },
+                paper: {
+                    sx: { mt: 1, minWidth: 180 },
+                },
             }}
-          >
+        >
             <MenuItem onClick={handleProfile}>
-              <ListItemIcon>
-                <PersonIcon fontSize="small" />
-              </ListItemIcon>
-              Profile
+                <ListItemIcon>
+                    <PersonIcon fontSize="small" />
+                </ListItemIcon>
+                Profile
             </MenuItem>
 
             <MenuItem onClick={handleProfile}>
-              <ListItemIcon>
-                <SettingsIcon fontSize="small" />
-              </ListItemIcon>
-              Settings
+                <ListItemIcon>
+                    <SettingsIcon fontSize="small" />
+                </ListItemIcon>
+                Settings
             </MenuItem>
 
             <Divider />
 
             <MenuItem onClick={handleLogout}>
-              <ListItemIcon>
+            <ListItemIcon>
                 <LogoutIcon fontSize="small" />
-              </ListItemIcon>
-              Logout
+            </ListItemIcon>
+            Logout
             </MenuItem>
-          </Menu>
+            </Menu>
         </Box>
-      </Toolbar>
+        </Toolbar>
     </AppBar>
-  );
+    );
 }
